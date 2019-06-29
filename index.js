@@ -54,4 +54,12 @@ server.put("/projects/:id", checkProjectExists, (req, res) => {
   return res.json(req.project);
 });
 
+server.delete("/projects/:id", checkProjectExists, (req, res) => {
+  const index = projects.indexOf(req.project);
+
+  projects.splice(index, 1);
+
+  return res.json({ message: "Deleted Successfully" });
+});
+
 server.listen(3333);
