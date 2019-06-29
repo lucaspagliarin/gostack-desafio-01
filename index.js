@@ -4,6 +4,14 @@ const server = express();
 
 server.use(express.json());
 
+let numberOfRequests = 0;
+
+function addRequest(req, res, next) {
+  numberOfRequests++;
+  console.log(`Number of requests: ${numberOfRequests}`);
+  return next();
+}
+
 const projects = [
   {
     id: "1",
@@ -24,6 +32,8 @@ function checkProjectExists(req, res, next) {
 
   return next();
 }
+
+server.use(addRequest);
 
 server.get("/projects", (req, res) => {
   res.json(projects);
