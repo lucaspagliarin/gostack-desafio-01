@@ -12,8 +12,25 @@ const projects = [
   }
 ];
 
+function checkProjectExists(req, res, next) {
+  const { id } = req.params;
+  const project = projects.find(project => id === project.id);
+
+  if (!project) {
+    return res.status(400).json({ error: "Project not found" });
+  }
+
+  req.project = project;
+
+  return next();
+}
+
 server.get("/projects", (req, res) => {
   res.json(projects);
+});
+
+server.get("/projects/:id", checkProjectExists, (req, res) => {
+  res.json(req.project);
 });
 
 server.post("/projects", (req, res) => {
@@ -27,6 +44,14 @@ server.post("/projects", (req, res) => {
   projects.push(project);
 
   return res.json(projects);
+});
+
+server.put("/projects/:id", checkProjectExists, (req, res) => {
+  const { title } = req.body;
+
+  req.project.title = title;
+
+  return res.json(req.project);
 });
 
 server.listen(3333);
