@@ -62,4 +62,12 @@ server.delete("/projects/:id", checkProjectExists, (req, res) => {
   return res.json({ message: "Deleted Successfully" });
 });
 
+server.post("/projects/:id/tasks", checkProjectExists, (req, res) => {
+  const { title } = req.body;
+
+  req.project.tasks.push(title);
+
+  return res.json(req.project);
+});
+
 server.listen(3333);
