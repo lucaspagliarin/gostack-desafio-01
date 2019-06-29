@@ -1,0 +1,19 @@
+{
+  "name": "gostack-desafio-01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lucaspagliarin/gostack-desafio-01.git",
+  "author": "<lucas.pagliarin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
